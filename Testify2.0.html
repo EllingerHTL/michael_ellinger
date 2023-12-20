@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testify Checklist App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #checklistHistory {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        #issueList {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist-item {
+            margin: 10px 0;
+        }
+        .checklist-item label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .checklist-item input {
+            margin-right: 5px;
+        }
+        .checklist-status {
+            display: inline-block;
+            padding: 5px;
+            color: #fff;
+            border-radius: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .status-open {
+            background-color: #f0ad4e; /* Orange */
+        }
+        .status-closed {
+            background-color: #5cb85c; /* Green */
+        }
+        .status-removed {
+            background-color: #ccc; /* Grey */
+        }
+        .status-reopen {
+            background-color: #5bc0de; /* Blue */
+        }
+        .comment-section {
+            margin-top: 20px;
+        }
+        .comment-input {
+            margin-right: 5px;
+        }
+        .comment-btn {
+            padding: 5px;
+            background-color: #337ab7; /* Blue */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .context-menu a {
+            cursor: pointer;
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Section -->
+    <div id="loginSection">
+        <h1>Login</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <button onclick="login()">Log In</button>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="homeScreen" style="display: none;">
+        <h1>Testify Checklist App</h1>
+
+        <button onclick="executeChecklist()">Execute Checklist</button>
+
+        <h2>Add Issue</h2>
+        <label for="issueTitle">Issue Title:</label>
+        <input type="text" id="issueTitle" placeholder="Enter issue title">
+
+        <label for="issueDescription">Issue Description:</label>
+        <input type="text" id="issueDescription" placeholder="Enter issue description">
+
+        <button onclick="addIssue()">Add Issue</button>
+
+        <!-- Issue Overview -->
+        <h2>Issue Overview</h2>
+        <ul id="issueList"></ul>
+
+        <!-- Checklist History -->
+        <h2>Checklist History</h2>
+        <ul id="checklistHistory"></ul>
+    </div>
+
+    <!-- Modal for Checklist -->
+    <div id="checklistModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChecklistModal()">&times;</span>
+            <h2>Checklist</h2>
+            <div class="checklist-item">
+                <label>Single Choice: </label>
+                <select id="singleChoice">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+            </div>
+            <div class="checklist-item">
+                <label>Text Check: </label>
+                <input type="text" id="textCheck">
+            </div>
+            <div class="checklist-item">
+                <label>Item 1: <input type="checkbox" id="item1"></label>
+            </div>
+            <div class="checklist-item">
+                <label>Item 2: <input type="checkbox" id="item2"></label>
+            </div>
+            <div class="checklist-item">
+                <label>Item 3: <input type="checkbox" id="item3"></label>
+            </div>
+            <button onclick="executeChecklistItems()">Execute Checklist</button>
+            <div class="comment-section">
+                <label for="comment">Add Comment: </label>
+                <input type="text" id="comment" class="comment-input">
+                <button onclick="addComment()" class="comment-btn">Add Comment</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Context Menu for Checklist History -->
+    <div id="contextMenu" class="context-menu">
+        <a id="contextOpen" href="#" onclick="changeChecklistState('open')">Open</a>
+        <a id="contextClosed" href="#" onclick="changeChecklistState('closed')">Closed</a>
+        <a id="contextRemoved" href="#" onclick="changeChecklistState('removed')">Removed</a>
+        <a id="contextReopen" href="#" onclick="changeChecklistState('reopen')">Reopen</a>
+    </div>
+
+    
+
+    
+
+    <script>
+
+        
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Simple validation, you might want to enhance this
+            if (username && password) {
+                // Hide login section
+                document.getElementById('loginSection').style.display = 'none';
+
+                // Show home screen
+                document.getElementById('homeScreen').style.display = 'block';
+            } else {
+                alert('Please enter both username and password.');
+            }
+        }
+
+        function executeChecklist() {
+            // Clear the previous checklist results
+            document.getElementById('singleChoice').selectedIndex = 0;
+            document.getElementById('textCheck').value = '';
+            document.getElementById('item1').checked = false;
+            document.getElementById('item2').checked = false;
+            document.getElementById('item3').checked = false;
+            document.getElementById('comment').value = '';
+
+            // Display the checklist modal
+            document.getElementById('checklistModal').style.display = 'block';
+        }
+
+        function closeChecklistModal() {
+            // Close the checklist modal
+            document.getElementById('checklistModal').style.display = 'none';
+        }
+
+        function executeChecklistItems() {
+            // Logic to execute checklist items
+            const singleChoiceValue = document.getElementById('singleChoice').value;
+            const textCheckValue = document.getElementById('textCheck').value;
+            const item1Checked = document.getElementById('item1').checked;
+            const item2Checked = document.getElementById('item2').checked;
+            const item3Checked = document.getElementById('item3').checked;
+
+            // Display the executed checklist in history with context menu
+            const checklistHistory = document.getElementById('checklistHistory');
+            const checklistItem = document.createElement('li');
+            checklistItem.className = 'checklist-item';
+            checklistItem.innerHTML = `
+                Single Choice: ${singleChoiceValue},
+                Text Check: ${textCheckValue},
+                Items: ${item1Checked ? 'Item 1, ' : ''}${item2Checked ? 'Item 2, ' : ''}${item3Checked ? 'Item 3' : ''}
+                <div class="checklist-status status-open" oncontextmenu="showContextMenu(event)">(Open)</div>
+            `;
+            checklistHistory.appendChild(checklistItem);
+
+            // Close the checklist modal after execution
+            closeChecklistModal();
+        }
+
+        function addIssue() {
+            const issueTitle = document.getElementById('issueTitle').value;
+            const issueDescription = document.getElementById('issueDescription').value;
+
+            if (issueTitle && issueDescription) {
+                // Display the issue in the overview
+                const issueList = document.getElementById('issueList');
+                const issueItem = document.createElement('li');
+                issueItem.textContent = `Title: ${issueTitle}, Description: ${issueDescription}`;
+                issueList.appendChild(issueItem);
+            } else {
+                alert('Please enter both issue title and description.');
+            }
+        }
+
+        function addComment() {
+            const commentText = document.getElementById('comment').value;
+            if (commentText) {
+                // Add comment to the executed checklist in history
+                const checklistHistory = document.getElementById('checklistHistory');
+                const lastChecklistItem = checklistHistory.lastElementChild;
+                const commentSpan = document.createElement('span');
+                commentSpan.textContent = ` [Comment: ${commentText}]`;
+                lastChecklistItem.appendChild(commentSpan);
+            } else {
+                alert('Please enter a comment.');
+            }
+        }
+
+        function showContextMenu(event) {
+            event.preventDefault();
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = event.clientX + 'px';
+            contextMenu.style.top = event.clientY + 'px';
+        }
+
+        function hideContextMenu() {
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'none';
+        }
+
+        function changeChecklistState(state) {
+            hideContextMenu();
+            const lastChecklistItem = document.getElementById('checklistHistory').lastElementChild;
+            const statusElement = lastChecklistItem.querySelector('.checklist-status');
+            statusElement.textContent = `(${state.charAt(0).toUpperCase() + state.slice(1)})`;
+            statusElement.className = `checklist-status status-${state}`;
+        }
+    </script>
+</body>
+</html>
