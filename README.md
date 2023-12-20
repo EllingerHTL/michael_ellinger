@@ -1,10 +1,10 @@
 # Project Proposal für Testify: Einsatz von ChatGPT im Cypress E2E-Testprozess
 
 ## Einleitung zu Testify
-Testify ist ein Unternehmen in der Digitalisierung von Arbeitsabläufen und Checklisten. Die Organisation zeichnet sich durch einen effizienten Zwei-Wochen-Sprintzyklus aus, der eine schnelle Reaktion auf Fehler ermöglicht und eine zügige Fehlerbehebung gewährleistet. Dieser agile Ansatz ist besonders herausfordernd, da Testify in einem dynamischen Umfeld mit häufigen Softwareupdates und kontinuierlichen Feature-Implementierungen agiert.
+Testify ist ein Unternehmen in der Digitalisierung von Arbeitsabläufen und Checklisten. Die Organisation zeichnet sich durch einen effizienten Zwei-Wochen-Sprintzyklus aus, der eine schnelle Reaktion auf Fehler ermöglicht und eine zügige Fehlerbehebung gewährleistet. Dieser Ansatz verursacht jedoch hohe Ansprüche an das qa-Department.
 
 ## Ausgangssituation
-Testify's schneller Releasezyklus und ständiges Wachstum führen zu einem exponentiellen Anstieg des manuellen Testaufwands. Aktuell haben wir pro Sprint bis zu 27 PBIs, die die Web-App immer komplexer und größer werden lassen. Dazu kommen noch etliche Bug-fixes, die noch genauer getestet werden müssen. Die aktuelle Testressource ist begrenzt, was zu einer Vernachlässigung der Testautomatisierung führt. Ein Teufelskreis, dem wir entgegenwirken müssen, um die Produktqualität zu erhalten, weil Testify als Produkt in sehr sensiblen Chemie Bereichen im Einsatz ist, wo keine größeren Fehler auftreten dürfen. Da wir nur ein Startup sind, ist unser Budget natürlich sehr begrenzt und wir müssen mit neuen Ideen den Problemen entgegenwirken. Deswegen appelliere ich, dass der folgende Vorschlag, eine neue Strategie in Erwägung zu ziehen, unterstützt und gefördert wird. Um genauer zu sein, es handelt sich um Test Automatisierung Optimierung durch ChatGPT, grob gesagt, um manuellen immer wieder kehrenden Testaufwand zu verringern und mehr Sicherheit vorweisen zu können.
+Testify's schneller Releasezyklus und ständiges Wachstum führen zu einem exponentiellen Anstieg des manuellen Testaufwands. Aktuell haben wir pro Sprint bis zu 27 PBIs, die die Web-App immer komplexer und größer werden lassen. Dazu kommen noch etliche Bug-fixes, die noch genauer getestet werden müssen. Die aktuelle Testressource ist begrenzt, was zu einer Vernachlässigung der Testautomatisierung führt. Ein Teufelskreis, dem wir entgegenwirken müssen, um die Produktqualität zu erhalten, weil Testify als Produkt in sehr sensiblen Chemie Bereichen im Einsatz ist, wo keine größeren Fehler auftreten dürfen. Da wir nur ein Startup sind, ist unser Budget natürlich sehr begrenzt und wir müssen mit neuen Ideen die Probleme bearbeiten. Deswegen appelliere ich, dass der folgende Vorschlag, eine neue Strategie in Erwägung zu ziehen, unterstützt und gefördert wird. Um genauer zu sein, es handelt sich um Test Automatisierung Optimierung durch ChatGPT, grob gesagt, um manuellen immer wieder kehrenden Testaufwand zu verringern und mehr Sicherheit vorweisen zu können.
 
 ## Projektziele und Systemkonzepte
 Das Ziel ist die Integration von ChatGPT in die Testautomatisierung, um Zeit zu sparen und mehr Bereiche automatisch abzudecken. ChatGPT soll Cypress-Tests für die Grundelemente der Web-App generieren, wodurch unser Fokus auf feinerem Cypress-Code und schnellere Fehlerbehebung liegt. Bei den meisten Cypress Tests geht es nicht um das Wissen, das der Programmierer mitbringen muss, sondern um die Geduld, jeden Namen / ID oder andere Identifizierung eines Buttons oder Feldes herauszufinden, und dann etliche Zeilen an Code zu schreiben, die immer wieder gleich aufgebaut sind um jeden Click so „Menschengetreu“ wie möglich zu programmieren. Die Simple Arbeit, Namen von Buttons zu finden und simple Codezeilen zu schreiben, könnte ChatGPT übernehmen und Zeit sparen, wo man sich dann auf genauere, zeitaufwändigere manuelle Fehlersuche konzentrieren kann oder wo man die Komplexeren, immer ändernden Bereiche von Testify automatisch testen lässt.
@@ -13,7 +13,7 @@ Das Ziel ist die Integration von ChatGPT in die Testautomatisierung, um Zeit zu 
 ### Rahmenbedingungen
 - **Budget:** Die finanziellen Mittel für Schulungen und ChatGPT Prime müssen bereitgestellt werden. Falls das Projekt nicht wie erwartet funktioniert, sollte das Budget ohne größere Verluste sein.
 - **Know-how:** Internes Know-how wird durch Selbststudium und praktische Anwendung entwickelt.
-- **Verpflichtungen:** Klarheit über die Projektaussichten muss frühzeitig bestehen, um bei Bedarf alternative Lösungen zu evaluieren.
+- **Verpflichtungen:** Klarheit über die Projektaussichten muss frühzeitig bestehen, um bei Bedarf alternative Lösungen zu evaluieren, um nicht zu spät zu einer Lösung zu kommen.
 - **Datenschutz:** Ein geschlossener Testbereich wird geschaffen, um Datenschutzrichtlinien einzuhalten.
 - **Ressourcenlimits:** Die Möglichkeit zur täglichen manuellen Testarbeit muss stets gewährleistet sein, möglicherweise durch eine zeitlich begrenzte Aufstockung der Stunden.
 
@@ -36,7 +36,7 @@ Das Ziel ist die Integration von ChatGPT in die Testautomatisierung, um Zeit zu 
 ### Ressourcen
 - **Humane Ressourcen:** Teilzeitarbeitnehmer (20 Stunden pro Woche)
 - **Lizenzen:** ChatGPT API
-- **Sonstiges:** Schulungsmaterialien, dedizierte ChatGPT-Testumgebung bei Testify?
+- **Sonstiges:** Schulungsmaterialien, für ChatGPT bestimmte Testumgebung bei Testify (Eigener Tenant oder eigene Stage)
 
 ### Zeitplan
 - **Projektstart:** Dezember 2023
@@ -55,9 +55,9 @@ Das Ziel ist die Integration von ChatGPT in die Testautomatisierung, um Zeit zu 
 Es wurden bereits erste Tests durchgeführt, um die Machbarkeit der Integration von ChatGPT in den Testprozess zu prüfen. Diese Tests umfassten die Generierung eines Cypress-Tests für eine kleine Webanwendung, was vielversprechende Ergebnisse hervorbrachte.
 
 ### Ergebnisse
-[Cypress code](chat_GPT_For_Cypress_Codes/cypress_code.js)
-[Web App Code](chat_GPT_For_Cypress_Codes/Testify2.0.html)
-[Cypress Ausführung (Video)](chat_GPT_For_Cypress_Codes/Video_cypress.mp4)
+- [Cypress code](chat_GPT_For_Cypress_Codes/cypress_code.js)
+- [Web App Code](chat_GPT_For_Cypress_Codes/Testify2.0.html)
+- [Cypress Ausführung (Video)](chat_GPT_For_Cypress_Codes/Video_cypress.mp4)
 
 
 Außerdem wurden viele Stunden mit ChatGPT verbracht, um einen ersten Eindruck von der KI zu bekommen und um vorzufühlen, ob das alles machbar ist und wo die Grenzen sind und wo man sich Zeit spart, wenn man es gleich selber programmiert. Aber all diese Informationen würden den Rahmen sprengen. Bei Interesse kann gerne ein Termin vereinbart werden, um näher auf das Thema einzugehen.
