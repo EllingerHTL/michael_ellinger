@@ -55,9 +55,9 @@ Das Ziel ist die Integration von ChatGPT in die Testautomatisierung, um Zeit zu 
 Es wurden bereits erste Tests durchgeführt, um die Machbarkeit der Integration von ChatGPT in den Testprozess zu prüfen. Diese Tests umfassten die Generierung eines Cypress-Tests für eine kleine Webanwendung, was vielversprechende Ergebnisse hervorbrachte.
 
 ### Ergebnisse
-[Cypress code](cypress_code.js)
-[Web App Code](Testify2.0.html)
-[Cypress Ausführung (Video)](Video_cypress.mp4)
+[Cypress code](chat_GPT_For_Cypress_Codes/cypress_code.js)
+[Web App Code](chat_GPT_For_Cypress_Codes/Testify2.0.html)
+[Cypress Ausführung (Video)](chat_GPT_For_Cypress_Codes/Video_cypress.mp4)
 
 
 Außerdem wurden viele Stunden mit ChatGPT verbracht, um einen ersten Eindruck von der KI zu bekommen und um vorzufühlen, ob das alles machbar ist und wo die Grenzen sind und wo man sich Zeit spart, wenn man es gleich selber programmiert. Aber all diese Informationen würden den Rahmen sprengen. Bei Interesse kann gerne ein Termin vereinbart werden, um näher auf das Thema einzugehen.
@@ -65,7 +65,7 @@ Außerdem wurden viele Stunden mit ChatGPT verbracht, um einen ersten Eindruck v
 Nebenbei wurde auch viel recherchiert, und alle möglichen Zeitschriften/Foren und Blogs sind zu derselben Schlussfolgerung gekommen, dass sehr viel Potenzial zur Zeitersparnis im Thema von ChatGPT in Verknüpfung von Cypress Tests liegt. Auch wenn die ChatBots noch in der Anfangsphase sind, bedeutet das auch, dass sich mit einer unglaublich großen Geschwindigkeit neue Wege auftun werden, die es optimal ist, schon sehr früh zu erforschen.
 
 ### Kurzer Einblick was ChatGPT zu dem Thema sagt (ein wenig Überspitzt)
-[Link zu ChatGPT-Proposal](ChatGPT_Proposal.md)
+[Link zu ChatGPT-Proposal](chat_GPT_For_Cypress_Codes/ChatGPT_Proposal.md)
 
 ## Quellen
 - [Perfecto State of Test Automation](https://www.perfecto.io/sites/default/files/pdfs/ebook-perfecto-state-test-automation-23.pdf)
