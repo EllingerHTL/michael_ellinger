@@ -76,7 +76,6 @@ Nebenbei wurde auch viel recherchiert, und alle möglichen Zeitschriften/Foren u
 - [Software Testing with ChatGPT as Assistant](https://pirasanth.com/blog/how-to-integrate-chatgpt-into-your-automation-framework)
 - [Asserting Network Calls from Cypress Tests](https://www.heise.de/hintergrund/Software-Testing-mit-ChatGPT-als-Assistent-9351842.html)
 - [Using Shared Test Context](https://www.cypress.io/blog/2019/12/23/asserting-network-calls-from-cypress-tests)
-- [AI Summit by UiPath](https://www.uipath.com/events/ai-summit?utm_source=google&utm_medium=cpc&utm_campaign=DACH_Tier-1_ENG_Gen_T2_Product&utm_term=chatgpt%20automation-p&utm_content=G_Product-ChatGPT&gad_source=1&gclid=Cj0KCQiAmNeqBhD4ARIsADsYfTesNMrX27KIXjLKher4awB_WgQK38eAKnOZLS4G5ARhbuz1MLtDcggaAmHhEALw_wcB&gclsrc=aw.ds)
 
 ## Schlussfolgerung
 Die Integration von ChatGPT in Testifys Testprozess ist ein strategischer Schritt zur Optimierung der Effizienz, Reduzierung manueller Testaufwände und Verbesserung der Testabdeckung. Es ist der erste Schritt, um sicherzustellen, dass die Produktqualität auch in Zukunft gewährleistet bleibt. Außerdem steckt ein unglaubliches Potenzial hinter ChatGPT, das laufend mehr wird, und eine Änderung in der Teststrategie ist unausweichlich, wobei diese Lösung womöglich die schnellste und kostengünstigste ist.
